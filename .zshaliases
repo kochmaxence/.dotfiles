@@ -1,0 +1,5 @@
+alias ll="ls -alh"
+alias vim="nvim"
+alias vi="vim"
+alias edit-zsh-aliases="vim $DIR_DOTFILES/.zshaliases"
+alias edit-zsh-env"vim $DIR_DOTFILES/.zshenv"
