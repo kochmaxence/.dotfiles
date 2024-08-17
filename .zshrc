@@ -15,4 +15,6 @@ if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
   source /usr/share/zsh/manjaro-zsh-prompt
 fi
 
+. "$DIR_DOTFILES/.zshenv"
 . "$DIR_DOTFILES/.zshaliases"
+
