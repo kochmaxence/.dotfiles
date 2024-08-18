@@ -53,5 +53,8 @@ pacman_install -Sy pyenv tk
 pyenv install 3.12.4
 pyenv global 3.12.4
 
+# Replace pulseaudio
+pacman_install pipewire wireplumber
+
 # Create directories
 mkdir -p $HOME/Projects
