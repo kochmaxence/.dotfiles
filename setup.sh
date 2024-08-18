@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
-sudo pacman -Syuu --noconfirm
-sudo pacman -Sy --noconfirm yay \
+# Define a function to run pacman with sudo and --noconfirm
+pacman_install() {
+  sudo pacman --noconfirm "$@"
+}
+
+pacman_install -Syuu
+pacman_install -Sy yay \
   snapd \
   neovim \
   wl-clipboard \
@@ -11,8 +16,7 @@ sudo pacman -Sy --noconfirm yay \
   ripgrep \
   luarocks \
   fd \
-  lazygit \
-  tree-sitter
+  lazygit
 
 sudo systemctl enable --now snapd.socket
 sudo systemctl enable --now snapd.apparmor.service
@@ -35,3 +39,19 @@ set -x
 
 # Install Rust through rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+pacman_install -Sy rust-analyzer
+
+# Install tree sitter through cargo
+cargo install tree-sitter-cli
+
+# Install Golang through Goup
+curl -sSf https://raw.githubusercontent.com/owenthereal/goup/master/install.sh | sh -s -- '--skip-prompt'
+
+# Setup python
+pacman_install -Sy pyenv tk
+pyenv install 3.12.4
+pyenv global 3.12.4
+
+# Create directories
+mkdir -p $HOME/Projects
